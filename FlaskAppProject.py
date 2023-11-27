@@ -6,7 +6,7 @@ from flask import Flask, render_template
 from flask import request, redirect, url_for
 
 #instantiate
-app = Flask((__name__))
+app = Flask(((__name__)))
 # route for handling the login page logic
 @app.route('/', methods=['GET', 'POST'])
 def login():
