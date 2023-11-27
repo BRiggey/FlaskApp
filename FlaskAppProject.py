@@ -1,12 +1,13 @@
-__author__ = 'Tony Teate'
-#Hi there partner
+__author__ = 'Brian La Rosa', 'Evan Cooper'
 #imports
+
 import sqlite3
+
 from flask import Flask, render_template
 from flask import request, redirect, url_for
 
 #instantiate
-app = Flask(((__name__)))
+app = Flask(__name__)
 # route for handling the login page logic
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -17,6 +18,17 @@ def login():
         else:
             return redirect(url_for('info'))
     return render_template('login.htm', error=error)
+def info():
+    celebID = None
+    firstname = ''
+    lastname = ''
+    age = ''
+    email = ''
+    photo = ''
+    bio = ''
+
+    if request.method = 'GET' :
+        conn = sqlite3.connect('')
 
 
 
