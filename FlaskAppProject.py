@@ -6,18 +6,25 @@ import sqlite3
 from flask import Flask, render_template
 from flask import request, redirect, url_for
 
+
+
+
+
+#instantiate
+app = Flask(__name__)
+
 #Creating the database
 conn = sqlite3.connect("celebrities.db")
 cursor = conn.cursor()
 #Creating both tables
-sql = ('''create table celebs(celebID integer PRIMARY KEY, 
+sql1 = ('''create table celebs(celebID integer PRIMARY KEY, 
 firstname text, lastname text, age integer, email text, photo text, bio text)''')
-cursor.execute(sql)
-sql = ('''create table members(memberID integer PRIMARY KEY, firstname text, "
-       "lastname text, age integer, email text, bio text)''')
-cursor.execute(sql)
+cursor.execute(sql1)
+sql2 = ('''create table members(memberID integer PRIMARY KEY, firstname text, 
+       lastname text, age integer, email text, bio text)''')
+cursor.execute(sql2)
 
-sql = "insert into celebs values(?,?,?,?,?,?,?)"
+sql3 = "insert into celebs values(?,?,?,?,?,?,?)"
 data = ((1,"Angelina", "Jolie", 40, "angie@hollywood.us", "https://s3.amazonaws.com/isat3402021/aj.jpg",
          "Angelina Jolie is an American actress, filmmaker and humanitarian. The recipient of "
          "numerous accolades, including an Academy Award and three Golden Globe Awards, she has been named Hollywood's "
@@ -61,13 +68,13 @@ data = ((1,"Angelina", "Jolie", 40, "angie@hollywood.us", "https://s3.amazonaws.
          "a two-time NBA Most Valuable Player (MVP), an NBA Finals MVP, an NBA All-Star Game MVP, a nine-time NBA "
          "All-Star, and a nine-time All-NBA selection, including four times on the first team.")
         )
-cursor.executemany(sql, data)
+cursor.executemany(sql3, data)
+
+sql4 = "insert into members values(?,?,?,?,?,?)"
+data = (1, "Brian", "La Rosa", 21, "briggey21@gmail.com", "blah blah")
+cursor.execute(sql4, data)
 conn.close()
 
-
-
-#instantiate
-app = Flask(__name__)
 
 # route for handling the login page logic
 @app.route('/', methods=['GET', 'POST'])
@@ -116,3 +123,15 @@ def add_header(response):
 
 if __name__ == "__main__":
     app.run(debug=False)
+
+
+conn = sqlite3.connect("celebrities.db")
+cursor = conn.cursor()
+
+sql = "select * from celebs"
+cursor.execute(sql)
+rows = cursor.fetchall()
+
+for row in rows:
+    print(row)
+conn.close()
