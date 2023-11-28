@@ -1,15 +1,10 @@
-__author__ = 'Brian La Rosa', 'Evan Cooper'
+_author__ = 'Brian La Rosa', 'Evan Cooper'
 #imports
 
 import sqlite3
 
 from flask import Flask, render_template
 from flask import request, redirect, url_for
-
-
-
-
-
 #instantiate
 app = Flask(__name__)
 
@@ -73,6 +68,7 @@ cursor.executemany(sql3, data)
 sql4 = "insert into members values(?,?,?,?,?,?)"
 data = (1, "Brian", "La Rosa", 21, "briggey21@gmail.com", "blah blah")
 cursor.execute(sql4, data)
+conn.commit()
 conn.close()
 
 
