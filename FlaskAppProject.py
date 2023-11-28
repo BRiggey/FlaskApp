@@ -89,6 +89,46 @@ def info():
     age = None
     email = ''
     bio = ''
+    success = False
+
+    if request.method == 'GET':
+        conn = sqlite3.connect('celebrities.db')
+        c = conn.cursor()
+        c.execute('''SELECT * FROM members''')
+        row = c.fetchone()
+        print(row)
+        if row:
+            memberID = row[0]
+            firstname = row[1]
+            lastname = row[2]
+            age = row[3]
+            email = row[4]
+            bio =  row[5]
+        conn.close()
+    if request.method == 'POST':
+        memberID = request.form('memberID')
+        firstname = request.form('firstname')
+        lastname = request.form('lastname')
+        age = request.form('age')
+        email = request.form('email')
+        bio = request.form('bio')
+        success = True
+
+        conn = sqlite3.connect('celebrities.db')
+        c = conn.cursor()
+        c.execute('''SELECT * FROM members''')
+        row = c.fetchone()
+        if row:
+            c.execute('''UPDATE members SET firstname = ?, lastname = ?, 
+            age = ?, email = ?, bio = ? WHERE memberID = ?''',
+            (memberID, firstname, lastname, age, email, bio))
+        else:
+            c.execute('''INSERT INTO members VALUES (?, ?, ?, ?, ?, ?)''',
+                      (memberID, firstname, lastname, age, email, bio))
+        conn.commit()
+        conn.close()
+    return render_template('profile.htm', memberID = memberID, firstname = firstname,
+                           lastname = lastname, age = age, email = email, bio =bio, success = success)
 
 
 
