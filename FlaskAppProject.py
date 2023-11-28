@@ -82,6 +82,9 @@ def login():
         else:
             return redirect(url_for('info'))
     return render_template('login.htm', error=error)
+
+@app.route('/info', methods = ['GET', 'POST'])
+
 def info():
     memberID = None
     firstname = ''
