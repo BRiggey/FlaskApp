@@ -66,7 +66,7 @@ data = ((1,"Angelina", "Jolie", 40, "angie@hollywood.us", "https://s3.amazonaws.
 cursor.executemany(sql3, data)
 
 sql4 = "insert into members values(?,?,?,?,?,?)"
-data = (1, "Brian", "La Rosa", 21, "briggey21@gmail.com", "blah blah")
+data = (1, "Evan", "Cooper", 19, "ercooper510@gmail.com", "I am a sophomore in ISAT from Montpelier, VA")
 cursor.execute(sql4, data)
 conn.commit()
 conn.close()
@@ -164,13 +164,3 @@ if __name__ == "__main__":
     app.run(debug=False)
 
 
-conn = sqlite3.connect("celebrities.db")
-cursor = conn.cursor()
-
-sql = "select * from celebs"
-cursor.execute(sql)
-rows = cursor.fetchall()
-
-for row in rows:
-    print(row)
-conn.close()
