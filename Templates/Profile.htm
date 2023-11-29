@@ -2,42 +2,37 @@
 
 <html>
 
-<style type="text/css">
-body { background-color: gray}
-</style>
+
 <head>
+
+
+<title> </title>
+<style type="text/css">
+body { background-color: lightcyan;}
+</style>
 
 <title> Profile Information </title>
 
 </head>
 
-<body style="background-color:powderblue;">
-
 <form action = "" method = "post">
-<p> Please <Strong>update</Strong></p>
 <fieldset>
-	<legend>Personal information:</legend>
+	<legend>Profile information:</legend>
 	<br>
+	<p>Please <Strong>update</Strong> your personal information on the following form <br>
+	<em>All fields are valid and must contain valid information</em>
+	</p>
 	<br>
-	<br>
-	Please update your personal information on the following Form
-	<br>
-	<i>All fields are valid and must contain valid information</i>
-	<br>
-	<br>
-	<table border = 2> 
+	<table border = 1>
 	<TR>
 		<TD> Member ID: </TD>
-		<td><input type = "text" name = "memberID" value = "{{memberID}}" readonly />
+		<td><input type = "text" name = "memberID" value = "{{memberID}}" readonly/>
 		<br>
 		</td>
 	</TR>
-
 	<TR>
 		<TD> First Name: </TD>
 		<td><input type="text" name="firstname" value="{{firstname}}"/></td>
-
-
 	</TR>
 	<TR>
 		<TD> Last Name:</TD>
@@ -50,21 +45,28 @@ body { background-color: gray}
 	</tr>
 	<TR>
 		<td> Email: </TD>
-		<td> <input type = "text" name = "email" value = "{{email}}"/> <i>E.G.user@domain.com</i> </td>
-	</TR>
-	<TR >
-		<TD> <img src = "{{ url_for('static', filename = 'myself.jpg') }}" width = "110" height = "130" > </TD>
-		<td> <input type = "text" name = "Bio" value = "{{bio}}" size = 60 style = "height:200px"></td>
+		<td> <input type = "Email" name = "email" value = "{{email}}"> <i>E.G.user@domain.com</i> </td>
 	</TR>
 	<TR>
+		<TD> <img src = "{{ url_for('static', filename = 'myself.jpg') }}" width = "110" height = "130" > </TD>
+		<td> <textarea name="bio" rows=8 cols = 50> </textarea> </td>
+	</tr>
+
+	<TR>
 		<td>
-		<input type="submit" value="Update">
+		<input type="submit" value="Click to Update">
 		</td>
 	</TR>
 	</table>
 </fieldset>
 
 </form>
+
+
+
+
+
+
 </body>
 
 </html>
