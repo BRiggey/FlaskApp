@@ -123,7 +123,7 @@ def info():
         c.execute('''SELECT * FROM members''')
         row = c.fetchone()
         if row:
-            c.execute('''UPDATE members SET firstname = ?, lastname = ?, age = ?, email = ?, bio = ?, WHERE
+            c.execute('''UPDATE members SET firstname = ?, lastname = ?, age = ?, email = ?, bio = ? WHERE
             memberID=?''',
                       (firstname, lastname, age, email, bio, memberID))
         else:
@@ -131,9 +131,25 @@ def info():
                       (memberID, firstname, lastname, age, email, bio))
         conn.commit()
         conn.close()
-    return render_template('profile.htm', memberID=memberID, firstname=firstname, lastname=lastname, age=age,
+    return render_template('Profile.htm', memberID=memberID, firstname=firstname, lastname=lastname, age=age,
                            email=email, bio=bio, success=success)
 
+@app.route('/view_all_celebs')
+def view_all():
+    celebID = None
+    firstname = ''
+    lastname = ''
+    age = ''
+    email = ''
+    photo = ''
+    bio = ''
+
+    conn = sqlite3.connect('celebrities.db')
+    c = conn.cursor()
+    c.execute('''SELECT * FROM celebs ORDER BY celebID''')
+    rows = c.fetchall()
+    conn.close()
+    return render_template('view_all_celebs.htm', rows=rows)
 
 def get(request):
     pass
