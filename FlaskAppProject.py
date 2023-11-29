@@ -100,7 +100,6 @@ def info():
         c = conn.cursor()
         c.execute('''SELECT * FROM members''')
         row = c.fetchone()
-        print(row)
         if row:
             memberID = row[0]
             firstname = row[1]
