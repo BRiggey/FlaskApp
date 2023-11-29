@@ -100,7 +100,6 @@ def info():
         c = conn.cursor()
         c.execute('''SELECT * FROM members''')
         row = c.fetchone()
-        print(row)
         if row:
             memberID = row[0]
             firstname = row[1]
@@ -123,7 +122,7 @@ def info():
         c.execute('''SELECT * FROM members''')
         row = c.fetchone()
         if row:
-            c.execute('''UPDATE members SET firstname = ?, lastname = ?, age = ?, email = ?, bio = ?, WHERE
+            c.execute('''UPDATE members SET firstname = ?, lastname = ?, age = ?, email = ?, bio = ? WHERE
             memberID=?''',
                       (firstname, lastname, age, email, bio, memberID))
         else:
@@ -131,7 +130,7 @@ def info():
                       (memberID, firstname, lastname, age, email, bio))
         conn.commit()
         conn.close()
-    return render_template('profile.htm', memberID=memberID, firstname=firstname, lastname=lastname, age=age,
+    return render_template('Profile.htm', memberID=memberID, firstname=firstname, lastname=lastname, age=age,
                            email=email, bio=bio, success=success)
 
 
