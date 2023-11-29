@@ -66,7 +66,7 @@ data = ((1,"Angelina", "Jolie", 40, "angie@hollywood.us", "https://s3.amazonaws.
 cursor.executemany(sql3, data)
 
 sql4 = "insert into members values(?,?,?,?,?,?)"
-data = (1, "Evan", "Cooper", 19, "ercooper510@gmail.com", "I am a sophomore in ISAT from montpelier, VA")
+data = (1, "Brian", "La Rosa", 21, "briggey21@gmail.com", "blah blah")
 cursor.execute(sql4, data)
 conn.commit()
 conn.close()
