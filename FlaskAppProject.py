@@ -1,10 +1,11 @@
-_author__ = 'Brian La Rosa', 'Evan Cooper'
-# imports
-
 import sqlite3
 
 from flask import Flask, render_template
 from flask import request, redirect, url_for
+_author__ = 'Brian La Rosa', 'Evan Cooper'
+# imports
+
+
 
 # instantiate
 app = Flask(__name__)
@@ -94,21 +95,6 @@ def info():
     email = ''
     bio = ''
     success = False
-
-    if request.method == 'GET':
-        conn = sqlite3.connect('celebrities.db')
-        c = conn.cursor()
-        c.execute('''SELECT * FROM members''')
-        row = c.fetchone()
-        print(row)
-        if row:
-            memberID =row[0]
-            firstname =row[1]
-            lastname =row[2]
-            age =row[3]
-            email =row[4]
-            bio =row[5]
-        conn.close()
     if request.method == 'GET':
         conn = sqlite3.connect('celebrities.db')
         c = conn.cursor()
@@ -131,21 +117,22 @@ def info():
         email = request.form['email']
         bio = request.form['bio']
         success = True
+
         conn = sqlite3.connect('celebrities.db')
         c = conn.cursor()
         c.execute('''SELECT * FROM members''')
         row = c.fetchone()
         if row:
-            c.execute('''UPDATE members SET firstname = ?, lastname = ?, 
-            age = ?, email = ?, bio = ? WHERE memberID = ?''',
-                      (memberID, firstname, lastname, age, email, bio))
+            c.execute('''UPDATE members SET firstname = ?, lastname = ?, age = ?, email = ?, bio = ?, WHERE
+            memberID=?''',
+                      (firstname, lastname, age, email, bio, memberID))
         else:
-            c.execute('''INSERT INTO members VALUES (?, ?, ?, ?, ?, ?)''',
+            c.execute('''INSERT INTO members VALUES(?, ?, ?, ?, ?, ?)''',
                       (memberID, firstname, lastname, age, email, bio))
         conn.commit()
         conn.close()
-    return render_template('profile.htm', memberID=memberID, firstname=firstname,
-                           lastname=lastname, age=age, email=email, bio=bio, success=success)
+    return render_template('profile.htm', memberID=memberID, firstname=firstname, lastname=lastname, age=age,
+                           email=email, bio=bio, success=success)
 
 
 def get(request):
@@ -169,3 +156,5 @@ def add_header(response):
 
 if __name__ == "__main__":
     app.run(debug=False)
+
+

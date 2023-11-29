@@ -17,7 +17,6 @@ body { background-color: gray}
 <p> Please <Strong>update</Strong></p>
 <fieldset>
 	<legend>Personal information:</legend>
-
 	<br>
 	<br>
 	<br>
@@ -51,7 +50,7 @@ body { background-color: gray}
 	</tr>
 	<TR>
 		<td> Email: </TD>
-		<td> <input type = "Email" name = "email" value = "{{email}}"/> <i>E.G.user@domain.com</i> </td>
+		<td> <input type = "text" name = "email" value = "{{email}}"/> <i>E.G.user@domain.com</i> </td>
 	</TR>
 	<TR >
 		<TD> <img src = "{{ url_for('static', filename = 'myself.jpg') }}" width = "110" height = "130" > </TD>
@@ -66,12 +65,6 @@ body { background-color: gray}
 </fieldset>
 
 </form>
-
-
-
-
-
-
 </body>
 
 </html>
