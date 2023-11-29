@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask App - Celebrities</title>
+</head>
+    <body>
+        <table border = 5>
+            {%for row in rows %}
+            <tr>
+                <td> Photo</td> <td> <img height = "256" width = "256" src = "{{row[5]}}"/></td>
+            </tr>
+            <tr>
+                <td>Celebrity ID</td> <td> {{row[0]}}</td>
+            </tr>
+            <tr>
+                <td>First Name<td>{{row[1]}}</td>
+            </tr>
+            <tr>
+                <td>Last Name</td> <td>{{row[2]}}</td>
+            </tr>
+            <Tr>
+                <td>Age</td> <td>{{row[3]}}</td>
+            </Tr>
+            <tr>
+                <td>Email</td> <td>{{row[4]}}</td>
+            </tr>
+            <tr>
+                <td>Bio</td><td>{{row[6]}}</td>
+            </tr>
+            <tr>
+                <td> cols pan=2<br></td>
+            </tr>
+            {% end-for%}
+        </table>
+    </body>
+</html>
