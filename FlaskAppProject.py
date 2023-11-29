@@ -109,12 +109,12 @@ def info():
             bio =  row[5]
         conn.close()
     if request.method == 'POST':
-        memberID = request.form('memberID')
-        firstname = request.form('firstname')
-        lastname = request.form('lastname')
-        age = request.form('age')
-        email = request.form('email')
-        bio = request.form('bio')
+        memberID = request.form['memberID']
+        firstname = request.form['firstname']
+        lastname = request.form['lastname']
+        age = request.form['age']
+        email = request.form['email']
+        bio = request.form['bio']
         success = True
 
         conn = sqlite3.connect('celebrities.db')
@@ -130,8 +130,8 @@ def info():
                       (memberID, firstname, lastname, age, email, bio))
         conn.commit()
         conn.close()
-    return render_template('profile.htm', memberID = memberID, firstname = firstname,
-                           lastname = lastname, age = age, email = email, bio =bio, success = success)
+    return render_template('profile.htm', memberID=memberID, firstname=firstname,
+                           lastname=lastname, age=age, email=email, bio=bio, success=success)
 
 
 
