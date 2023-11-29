@@ -55,7 +55,7 @@ body { background-color: gray}
 		<td> <input type = "Email" name = "email"> <i>E.G.user@domain.com</i> </td>
 	</TR>
 	<TR height = 50>
-		<TD> img src = {{ url_for('static', filename = 'myself.jpg') }} width = "110" height = "130" </TD>
+		<TD> <img src = "{{ url_for('static', filename = 'myself.jpg') }}" width = "110" height = "130" > </TD>
 		<td> <input type = "text" name = "Bio" size = 60 style = "height:200px"></td>
 	</TR>
 	<TR>
