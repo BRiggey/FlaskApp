@@ -7,7 +7,7 @@ body { background-color: gray}
 </style>
 <head>
 
-<title> HTML Lab3 </title>
+<title> Profile Information </title>
 
 </head>
 
@@ -29,34 +29,33 @@ body { background-color: gray}
 	<table border = 2> 
 	<TR>
 		<TD> Member ID: </TD>
-		<td><input type = "text" name = "memberID">
+		<td><input type = "text" name = "memberID" value = "{{memberID}}" readonly />
 		<br>
 		</td>
 	</TR>
 
 	<TR>
 		<TD> First Name: </TD>
-		<td><input type = "text" name = "firstname">
-		<br>
-		</TD>
+		<td><input type="text" name="firstname" value="{{firstname}}"/></td>
+
+
 	</TR>
 	<TR>
 		<TD> Last Name:</TD>
-		<TD> <input type = "text" name = "lastname">
+		<TD> <input type = "text" name = "lastname" value = "{{lastname}}"/>
 		<br>
 		</TD>
-	<br>
 	<TR>
 		<td> Age: </td>
-		<td> <input type = "text" name = "age"> </td>
+		<td> <input type = "text" name = "age" value = "{{age}}"/> </td>
 	</tr>
 	<TR>
 		<td> Email: </TD>
-		<td> <input type = "Email" name = "email"> <i>E.G.user@domain.com</i> </td>
+		<td> <input type = "Email" name = "email" value = "{{email}}"/> <i>E.G.user@domain.com</i> </td>
 	</TR>
-	<TR height = 50>
+	<TR >
 		<TD> <img src = "{{ url_for('static', filename = 'myself.jpg') }}" width = "110" height = "130" > </TD>
-		<td> <input type = "text" name = "Bio" size = 60 style = "height:200px"></td>
+		<td> <input type = "text" name = "Bio" value = "{{bio}}" size = 60 style = "height:200px"></td>
 	</TR>
 	<TR>
 		<td>

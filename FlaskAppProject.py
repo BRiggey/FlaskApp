@@ -1,17 +1,18 @@
 _author__ = 'Brian La Rosa', 'Evan Cooper'
-#imports
+# imports
 
 import sqlite3
 
 from flask import Flask, render_template
 from flask import request, redirect, url_for
-#instantiate
+
+# instantiate
 app = Flask(__name__)
 
-#Creating the database
+# Creating the database
 conn = sqlite3.connect("celebrities.db")
 cursor = conn.cursor()
-#Creating both tables
+# Creating both tables
 sql1 = ('''create table celebs(celebID integer PRIMARY KEY, 
 firstname text, lastname text, age integer, email text, photo text, bio text)''')
 cursor.execute(sql1)
@@ -20,7 +21,7 @@ sql2 = ('''create table members(memberID integer PRIMARY KEY, firstname text,
 cursor.execute(sql2)
 
 sql3 = "insert into celebs values(?,?,?,?,?,?,?)"
-data = ((1,"Angelina", "Jolie", 40, "angie@hollywood.us", "https://s3.amazonaws.com/isat3402021/aj.jpg",
+data = ((1, "Angelina", "Jolie", 40, "angie@hollywood.us", "https://s3.amazonaws.com/isat3402021/aj.jpg",
          "Angelina Jolie is an American actress, filmmaker and humanitarian. The recipient of "
          "numerous accolades, including an Academy Award and three Golden Globe Awards, she has been named Hollywood's "
          "highest-paid actress multiple times."),
@@ -83,8 +84,8 @@ def login():
             return redirect(url_for('info'))
     return render_template('login.htm', error=error)
 
-@app.route('/info', methods = ['GET', 'POST'])
 
+@app.route('/info', methods=['GET', 'POST'])
 def info():
     memberID = None
     firstname = ''
@@ -101,12 +102,26 @@ def info():
         row = c.fetchone()
         print(row)
         if row:
+            memberID =row[0]
+            firstname =row[1]
+            lastname =row[2]
+            age =row[3]
+            email =row[4]
+            bio =row[5]
+        conn.close()
+    if request.method == 'GET':
+        conn = sqlite3.connect('celebrities.db')
+        c = conn.cursor()
+        c.execute('''SELECT * FROM members''')
+        row = c.fetchone()
+        print(row)
+        if row:
             memberID = row[0]
             firstname = row[1]
             lastname = row[2]
             age = row[3]
             email = row[4]
-            bio =  row[5]
+            bio = row[5]
         conn.close()
     if request.method == 'POST':
         memberID = request.form['memberID']
@@ -116,7 +131,6 @@ def info():
         email = request.form['email']
         bio = request.form['bio']
         success = True
-
         conn = sqlite3.connect('celebrities.db')
         c = conn.cursor()
         c.execute('''SELECT * FROM members''')
@@ -124,7 +138,7 @@ def info():
         if row:
             c.execute('''UPDATE members SET firstname = ?, lastname = ?, 
             age = ?, email = ?, bio = ? WHERE memberID = ?''',
-            (memberID, firstname, lastname, age, email, bio))
+                      (memberID, firstname, lastname, age, email, bio))
         else:
             c.execute('''INSERT INTO members VALUES (?, ?, ?, ?, ?, ?)''',
                       (memberID, firstname, lastname, age, email, bio))
@@ -134,20 +148,13 @@ def info():
                            lastname=lastname, age=age, email=email, bio=bio, success=success)
 
 
-
-
-
-
-
-
-
-
-
 def get(request):
     pass
 
+
 def post(request):
     pass
+
 
 @app.after_request
 def add_header(response):
@@ -162,5 +169,3 @@ def add_header(response):
 
 if __name__ == "__main__":
     app.run(debug=False)
-
-
