@@ -13,7 +13,7 @@ background-color:powderblue;
 /* END EXTERNAL SOURCE */
 /* BEGIN EXTERNAL SOURCE */
 input {
-height:200px
+height:50px
 }
 /* END EXTERNAL SOURCE */
 /* BEGIN EXTERNAL SOURCE */
@@ -41,7 +41,7 @@ body { background-color: gray}
 	<i>All fields are valid and must contain valid information</i>
 	<br>
 	<br>
-	<table border = 2> 
+	<table border = 1>
 	<TR>
 		<TD> Member ID: </TD>
 		<td><input type = "text" name = "memberID">
@@ -69,8 +69,12 @@ body { background-color: gray}
 		<td> <input type = "Email" name = "email"> <i>E.G.user@domain.com</i> </td>
 	</TR>
 	<TR>
-		<TD> Bio: </TD>
-		<td> <input type = "text" name = "Bio" size = 60 style = "">
+		<TD> <img src = "{{ url_for('static', filename = 'myself.jpg')}}" width = "110" height = "130"></TD>
+		<TD> <input type = "text" name = "bio" size =60 style = "..."></TD>
+
+
+
+
 	</TR>
 	<TR>
 		<td>
