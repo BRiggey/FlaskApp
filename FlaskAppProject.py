@@ -2,13 +2,14 @@ import sqlite3
 
 from flask import Flask, render_template
 from flask import request, redirect, url_for
+
 _author__ = 'Brian La Rosa', 'Evan Cooper'
 # imports
 
 
-
 # instantiate
 app = Flask(__name__)
+
 
 # Creating the database
 
@@ -16,11 +17,18 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def login():
     error = None
+    conn = sqlite3.connect('celebrities.db')
+    c = conn.cursor()
+    c.execute('''SELECT username, password FROM member_login ORDER BY memberID''')
+    rows = c.fetchall()
+    conn.close()
+
     if request.method == 'POST':
-        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-            error = 'Invalid Credentials. Please try again.'
-        else:
-            return redirect(url_for('info'))
+        for row in rows:
+            if request.form['username'] != row[0] or request.form['password'] != row[1]:
+                error = 'Invalid Credentials. Please try again.'
+            else:
+                return redirect(url_for('info'))
     return render_template('login.htm', error=error)
 
 
@@ -71,6 +79,7 @@ def info():
     return render_template('Profile.htm', memberID=memberID, firstname=firstname, lastname=lastname, age=age,
                            email=email, bio=bio, success=success)
 
+
 @app.route('/view_all_celebs')
 def view_all():
     celebID = None
@@ -88,6 +97,7 @@ def view_all():
     conn.close()
     return render_template('view_all_celebs.htm', rows=rows)
 
+
 @app.route('/view_one_celeb')
 def view():
     celebID = None
@@ -103,7 +113,9 @@ def view():
     c.execute('''SELECT * FROM celebs ORDER BY celebID''')
     rows = c.fetchall()
     conn.close()
-    return render_template('view_one_celeb.htm', celebID=celebID, firstname=firstname, lastname=lastname, age=age, email=email, photo=photo, bio=bio)
+    return render_template('view_one_celeb.htm', photo=photo, celebID=celebID, firstname=firstname,
+                           lastname=lastname, age=age, email=email, bio=bio)
+
 
 def get(request):
     pass
@@ -126,5 +138,3 @@ def add_header(response):
 
 if __name__ == "__main__":
     app.run(debug=False)
-
-

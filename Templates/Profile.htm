@@ -58,8 +58,13 @@ body { background-color: lightcyan;}
 		</td>
 	</TR>
 	</table>
+	{% if success %}
+				<h3 style = "color:magenta;"> Data successfully submitted to the database!
+				</h3>
+	{% endif %}
 </fieldset>
 	<a href ="/view_all_celebs"> Click to view all of the celebrities </a>
+	<br>
 	<a href ="/view_one_celeb"> Click to view one of the celebrities </a>
 </form>
 
