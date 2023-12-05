@@ -88,6 +88,23 @@ def view_all():
     conn.close()
     return render_template('view_all_celebs.htm', rows=rows)
 
+@app.route('/view_one_celeb')
+def view():
+    celebID = None
+    firstname = ''
+    lastname = ''
+    age = ''
+    email = ''
+    photo = ''
+    bio = ''
+
+    conn = sqlite3.connect('celebrities.db')
+    c = conn.cursor()
+    c.execute('''SELECT * FROM celebs ORDER BY celebID''')
+    rows = c.fetchall()
+    conn.close()
+    return render_template('view_one_celeb.htm', celebID=celebID, firstname=firstname, lastname=lastname, age=age, email=email, photo=photo, bio=bio)
+
 def get(request):
     pass
 
