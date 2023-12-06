@@ -4,33 +4,33 @@
     <title>Flask App - Celebrities</title>
 </head>
     <body>
-        <table border = 1>
+        <table border = 5>
             <tr>
                 <td> Photo</td>
-                <td> <img height = "256" width = "256" src = "{{photo}}"/></td>
+                <td> <img height = "256" width = "256" src = "{{rows[5]}}"/></td>
             </tr>
             <tr>
-                <td> Celeb ID: </td> <td><input type = "text" name = "celebID" value = "{{celebID}}" readonly/> </td>
+                <td> Celeb ID: </td> <td><input type = "text" name = "celebID" value = "{{rows[1]}}" readonly/> </td>
             </tr>
             <tr>
                 <td>First Name</td>
-                <td>{{firstname}}</td>
+                <td>{{rows[2]}}</td>
             </tr>
             <tr>
                 <td>Last Name</td>
-                <td>{{lastname}}</td>
+                <td>{{rows[3]}}</td>
             </tr>
             <Tr>
                 <td>Age</td>
-                <td>{{age}}</td>
+                <td>{{rows[4]}}</td>
             </Tr>
             <tr>
                 <td>Email</td>
-                <td>{{email}}</td>
+                <td>{{rows[5]}}</td>
             </tr>
             <tr>
                 <td>Bio</td>
-                <td>{{bio}}</td>
+                <td>{{rows[6]}}</td>
             </tr>
             <tr>
                 <td> colspan=2<br></td>

@@ -12,7 +12,7 @@ cursor.execute(sql1)
 sql2 = ('''create table members(memberID integer PRIMARY KEY, firstname text, 
        lastname text, age integer, email text, bio text)''')
 cursor.execute(sql2)
-sql5 = ('''create table member_login(memberID integer PRIMARY KEY, username text, password text)''')
+sql5 = '''create table member_login(memberID integer PRIMARY KEY, username text, password text)'''
 cursor.execute(sql5)
 sql3 = "insert into celebs values(?,?,?,?,?,?,?)"
 data = ((1, "Angelina", "Jolie", 40, "angie@hollywood.us", "https://s3.amazonaws.com/isat3402021/aj.jpg",
@@ -61,8 +61,8 @@ data = ((1, "Angelina", "Jolie", 40, "angie@hollywood.us", "https://s3.amazonaws
 cursor.executemany(sql3, data)
 
 sql4 = "insert into members values(?,?,?,?,?,?)"
-data = (1, "Evan", "Cooper", 19, "ercooper510@gmail.com", "I am a sophomore in ISAT from Montpelier, VA")
-cursor.execute(sql4, data)
+data = ((2, "Evan", "Cooper", 19, "ercooper510@gmail.com", "I am a sophomore in ISAT from Montpelier, VA"), (1, "Brian",21, "La Rosa", "briggey21@gmil.com", "I am a Junior in ISAT from Richmond, VA"))
+cursor.executemany(sql4, data)
 sql6 = "insert into member_login values(?,?,?)"
 data2 = ((1, "brian", "riggey"), (2, "evan", "cooper"))
 cursor.executemany(sql6, data2)

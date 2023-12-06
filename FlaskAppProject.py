@@ -19,16 +19,20 @@ def login():
     error = None
     conn = sqlite3.connect('celebrities.db')
     c = conn.cursor()
-    c.execute('''SELECT username, password FROM member_login ORDER BY memberID''')
+    c.execute('''SELECT * FROM member_login''')
     rows = c.fetchall()
     conn.close()
 
     if request.method == 'POST':
+        str = 'info'
         for row in rows:
-            if request.form['username'] != row[0] or request.form['password'] != row[1]:
-                error = 'Invalid Credentials. Please try again.'
-            else:
-                return redirect(url_for('info'))
+            if request.form['memberID'] != row[0]:
+                if request.form['username'] != row[1] or request.form['password'] != row[2]:
+                    error = 'Invalid Credentials. Please try again.'
+                else:
+                    if request.form['memberID'] == 1:
+                        return redirect(url_for('info2'))
+                    return redirect(url_for(str))
     return render_template('login.htm', error=error)
 
 
@@ -111,10 +115,9 @@ def view():
     conn = sqlite3.connect('celebrities.db')
     c = conn.cursor()
     c.execute('''SELECT * FROM celebs ORDER BY celebID''')
-    rows = c.fetchall()
+    rows = c.fetchone()
     conn.close()
-    return render_template('view_one_celeb.htm', photo=photo, celebID=celebID, firstname=firstname,
-                           lastname=lastname, age=age, email=email, bio=bio)
+    return render_template('view_one_celeb.htm', rows=rows)
 
 
 def get(request):
