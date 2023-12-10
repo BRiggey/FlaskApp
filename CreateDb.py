@@ -61,7 +61,7 @@ data = ((1, "Angelina", "Jolie", 40, "angie@hollywood.us", "https://s3.amazonaws
 cursor.executemany(sql3, data)
 
 sql4 = "insert into members values(?,?,?,?,?,?)"
-data = ((2, "Evan", "Cooper", 19, "ercooper510@gmail.com", "I am a sophomore in ISAT from Montpelier, VA"), (1, "Brian",21, "La Rosa", "briggey21@gmil.com", "I am a Junior in ISAT from Richmond, VA"))
+data = ((2, "Evan", "Cooper", 19, "ercooper510@gmail.com", "I am a sophomore in ISAT from Montpelier, VA"), (1, "Brian",21, "La Rosa", "briggey21@gmail.com", "I am a Junior in ISAT from Richmond, VA"))
 cursor.executemany(sql4, data)
 sql6 = "insert into member_login values(?,?,?)"
 data2 = ((1, "brian", "riggey"), (2, "evan", "cooper"))

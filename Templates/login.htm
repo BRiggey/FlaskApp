@@ -2,17 +2,32 @@
 <html>
   <head>
     <title>Flask App - login page</title>
-	<link type="text/css" rel="stylesheet" href="static/style.css"/>
+       <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/all.css'>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css'><link rel="stylesheet" href="static/style2.css">
+
   </head>
   <body>
-      <h1>Members ONLY. Please log into the Celebrities Network</h1>
+      <h1 align= center> Members ONLY. <br> Please log into the Celebrities Network</h1>
       <br>
-      <form action="" method="post">
-        <input type = "integer" placeholder = "MemberID" name = memberID value="{{request.form.memberID }}">
-        <input type="text" placeholder="Username" name="username" value="{{request.form.username }}">
-        <input type="password" placeholder="Password" name="password" value="{{request.form.password }}">
-        <input type="submit" value="Login">
-      </form>
+      <div class="container">
+	    <div class="screen">
+         <div class="screen__content">
+            <form class="login__field" action="" method="post">
+                <input class="login__input" type = "integer" placeholder = "MemberID" name = memberID value="{{request.form.memberID }}">
+                <input class="login__input" type="text" placeholder="Username" name="username" value="{{request.form.username }}">
+                <input class="login__input" type="password" placeholder="Password" name="password" value="{{request.form.password }}">
+                <button class="button login__submit" type="submit" value="Login" >
+					<span class="button__text">Log In Now</span>
+					<i class="button__icon fas fa-chevron-right" ></i>
+				</button>
+            </form>
+         </div>
+      <div class="screen__background">
+			<span class="screen__background__shape screen__background__shape4"></span>
+			<span class="screen__background__shape screen__background__shape3"></span>
+			<span class="screen__background__shape screen__background__shape2"></span>
+			<span class="screen__background__shape screen__background__shape1"></span>
+		</div>
       {% if error %}
         <p><strong>Login Error:</strong> {{ error }}
       {% endif %}
