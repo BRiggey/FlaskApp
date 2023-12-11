@@ -1,6 +1,6 @@
 # ISAT 340 Project
 
-![databasepic](https://github.com/BRiggey/FlaskApp/assets/152221125/4303e33b-65ff-4c38-889e-baf3d3c61184){heght: 150px; }
+![databasepic](https://github.com/BRiggey/FlaskApp/assets/152221125/4303e33b-65ff-4c38-889e-baf3d3c61184){width: 150px; }
 
 
 ## Introduction
